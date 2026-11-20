@@ -1,13 +1,16 @@
 from PIL import Image, ImageDraw
 global raw_rgb_bytes
+col = (0,0,0)
 text = input("String>> ")
 format = input("RGB or BMP>> ").lower().strip()
 dev = input("would you like a .h file? y / n>> ").lower().strip()
+col = tuple(map(int, input("BColor as R,G,B>> ").split(",")))
+tcol = tuple(map(int, input("TColor as R,G,B>> ").split(",")))
 #creating the file
-img = Image.new("RGB", (200, 50), color=(0, 0, 0))
+img = Image.new("RGB", (200, 50), color=col)
 draw = ImageDraw.Draw(img)
 #DRawing
-draw.text((10, 15), text, fill=(255, 255, 255))
+draw.text((10, 15), text, fill=tcol)
 if format == "bmp":
     img.save("output.bmp", format="BMP")
     print("Created output.bmp")
